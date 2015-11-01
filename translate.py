@@ -37,11 +37,15 @@ tens_place_nums = {
 
 
 def translate_to_20(num):
-    for key in nums_to_twenty:
-        if str(num) == key:
-            translated_num = nums_to_twenty[key]
+    # the commented out code below is slow because it rehashes
+    # for key in nums_to_twenty:
+    #     if str(num) == key:
+    #         translated_num = nums_to_twenty[key]
+    #         return translated_num
+    for k, v in nums_to_twenty.items():
+        if str(num) == k:
+            translated_num = v
             return translated_num
-
 
 def translate_20_to_99(num):
     ones_place = str(num)[1]
@@ -51,20 +55,20 @@ def translate_20_to_99(num):
     if ones_place == "3":
         ones_place = "tré"
     else:
-        for key in nums_to_twenty:
-            if ones_place == key:
-                ones_place = nums_to_twenty[key]
+        for k, v in nums_to_twenty.items():
+            if ones_place == k:
+                ones_place = v
 
     # get the translation of the tens place
-    for key in tens_place_nums:
-        if tens_place == key:
-            translated_num = tens_place_nums[key] + ones_place
+    for k, v in tens_place_nums.items():
+        if tens_place == k:
+            translated_num = v + ones_place
 
             if ones_place == "0":
-                translated_num = tens_place_nums[key]
+                translated_num = v
 
             if ones_place == "uno" or ones_place == "otto":
-                translated_num = tens_place_nums[key][0:-1] + ones_place
+                translated_num = v[0:-1] + ones_place
 
             return translated_num
 
