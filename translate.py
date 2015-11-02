@@ -77,14 +77,13 @@ def translate_100_to_999(num):
 
 
 def translate_1000_to_9999(num):
-    thousands_place = str(num)[0]
+    thousands_place = int(str(num)[0])
     rest_of_number = int(str(num)[1:])
 
-    if thousands_place == "1":
+    if thousands_place == 1:
         thousands = "mille"
-
-    if int(thousands_place) >= 2:
-        thousands = translate_to_20(int(thousands_place)) + "mila"
+    else:
+        thousands = translate_to_20(thousands_place) + "mila"
 
     if rest_of_number == 0:
         translated_num = thousands
@@ -113,22 +112,22 @@ def translate_number(num):
     else:
         translated_num = translate_1000_to_9999(num)
     return translated_num
-#
-# print("-" * 40)
-# print("\nThis game tests your ability to write numbers up to 9999 in Italian.")
-# print("Random numbers will continue to be generated until you use ctrl + C to exit.")
-# print("\nYou will need to activate the US-Extended (Mac) or Windows International (PC) Keyboard.")
-# print("For an acute accent(é):")
-# print("\t[MAC]\t\ttype option + e and then the vowel")
-# print("\t[WINDOWS]\ttype single quote and then the vowel\n")
-# print("-" * 40)
-#
-# while(True):
-#     number = random.randint(1, 10000)
-#     translation = translate_number(number)
-#     print("\nWhat is " + str(number) + " in Italian?")
-#     answer = input(">> ")
-#     if answer.lower() == translation:
-#         print("Correct! Let's try another number.")
-#     else:
-#         print("That is not correct. The answer is " + translation + ".")
+
+print("-" * 40)
+print("\nThis game tests your ability to write numbers up to 9999 in Italian.")
+print("Random numbers will continue to be generated until you use ctrl + C to exit.")
+print("\nYou will need to activate the US-Extended (Mac) or Windows International (PC) Keyboard.")
+print("For an acute accent(é):")
+print("\t[MAC]\t\ttype option + e and then the vowel")
+print("\t[WINDOWS]\ttype single quote and then the vowel\n")
+print("-" * 40)
+
+while True:
+    number = random.randint(1, 10000)
+    translation = translate_number(number)
+    print("\nWhat is " + str(number) + " in Italian?")
+    answer = input(">> ")
+    if answer.lower() == translation:
+        print("Correct! Let's try another number.")
+    else:
+        print("That is not correct. The answer is " + translation + ".")
