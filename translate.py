@@ -77,29 +77,53 @@ def translate_100_to_999(num):
     hundreds_place = str(num)[0]
     tens_place = str(num)[1]
     ones_place = str(num)[2]
-    tens_and_ones_num = int(tens_place + ones_place)
+    rest_of_number = int(str(num)[1:])
 
     if int(hundreds_place) > 1:
-        hundreds_value = translate_to_20(num//100) + "cento"
+        hundreds = translate_to_20(num//100) + "cento"
     else:
-        hundreds_value = "cento"
+        hundreds = "cento"
 
     # obtain value of the tens and ones place
     # the "o" ending of cento is dropped if followed by otto or ottanta
     if tens_place == "0" and ones_place == "0":
-        translated_num = hundreds_value
+        translated_num = hundreds
         return translated_num
 
-    if tens_and_ones_num < 20:
-        if tens_and_ones_num == 8:
-            hundreds_value = hundreds_value[0:-1]
-        translated_num = hundreds_value + translate_to_20(tens_and_ones_num)
+    if rest_of_number < 20:
+        if rest_of_number == 8:
+            hundreds = hundreds[0:-1]
+        translated_num = hundreds + translate_to_20(rest_of_number)
         return translated_num
 
-    if tens_and_ones_num >= 20:
+    if rest_of_number >= 20:
         if tens_place == "8":
-            hundreds_value = hundreds_value[0:-1]
-        translated_num = hundreds_value + translate_20_to_99(tens_and_ones_num)
+            hundreds = hundreds[0:-1]
+        translated_num = hundreds + translate_20_to_99(rest_of_number)
+        return translated_num
+
+
+def translate_1000_to_9999(num):
+    thousands_place = str(num)[0]
+    rest_of_number = int(str(num)[1:])
+
+    if thousands_place == "1":
+        thousands = "mille"
+
+    if int(thousands_place) >= 2:
+        thousands = translate_to_20(int(thousands_place)) + "mila"
+
+    if rest_of_number == 0:
+        translated_num = thousands
+        return translated_num
+    elif rest_of_number >= 100:
+        translated_num = thousands + translate_100_to_999(rest_of_number)
+        return translated_num
+    elif rest_of_number >= 20:
+        translated_num = thousands + translate_20_to_99(rest_of_number)
+        return translated_num
+    else:
+        translated_num = thousands + translate_to_20(rest_of_number)
         return translated_num
 
 
@@ -108,8 +132,10 @@ def translate_number(num):
         translated_num = translate_to_20(num)
     elif 20 <= num < 100:
         translated_num = translate_20_to_99(num)
-    else:
+    elif 100 <= num < 1000:
         translated_num = translate_100_to_999(num)
+    else:
+        translated_num = translate_1000_to_9999(num)
     return translated_num
 
 
