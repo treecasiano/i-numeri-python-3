@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # coding: utf-8
-import random
 
 nums_to_twenty = {
     '1': 'uno',
@@ -47,6 +46,7 @@ def translate_to_20(num):
             translated_num = v
             return translated_num
 
+
 def translate_20_to_99(num):
     ones_place = str(num)[1]
     tens_place = str(num)[0]
@@ -73,11 +73,43 @@ def translate_20_to_99(num):
             return translated_num
 
 
-def translate(num):
-    if num <= 20:
-        translated_num = translate_to_20(num)
+def translate_100_to_999(num):
+    hundreds_place = str(num)[0]
+    tens_place = str(num)[1]
+    ones_place = str(num)[2]
+    tens_and_ones_num = int(tens_place + ones_place)
+
+    if int(hundreds_place) > 1:
+        hundreds_value = translate_to_20(num//100) + "cento"
     else:
+        hundreds_value = "cento"
+
+    # obtain value of the tens and ones place
+    # the "o" ending of cento is dropped if followed by otto or ottanta
+    if tens_place == "0" and ones_place == "0":
+        translated_num = hundreds_value
+        return translated_num
+
+    if tens_and_ones_num < 20:
+        if tens_and_ones_num == 8:
+            hundreds_value = hundreds_value[0:-1]
+        translated_num = hundreds_value + translate_to_20(tens_and_ones_num)
+        return translated_num
+
+    if tens_and_ones_num >= 20:
+        if tens_place == "8":
+            hundreds_value = hundreds_value[0:-1]
+        translated_num = hundreds_value + translate_20_to_99(tens_and_ones_num)
+        return translated_num
+
+
+def translate_number(num):
+    if num < 20:
+        translated_num = translate_to_20(num)
+    elif 20 <= num < 100:
         translated_num = translate_20_to_99(num)
+    else:
+        translated_num = translate_100_to_999(num)
     return translated_num
 
-print (translate(28))
+
