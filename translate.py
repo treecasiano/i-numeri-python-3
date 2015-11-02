@@ -123,6 +123,6 @@ while(True):
     print("\nWhat is " + str(number) + " in Italian?")
     answer = input(">> ")
     if answer.lower() == translation:
-        print("Correct! Let's try another number:\n")
+        print("Correct! Let's try another number.\n")
     else:
         print("That is not correct. The answer is " + translation + ".")
