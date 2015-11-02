@@ -63,7 +63,10 @@ def translate_100_to_999(num):
     if rest_of_number < 20:
         if rest_of_number == 8:
             hundreds = hundreds[0:-1]
-        translated_num = hundreds + translate_to_20(rest_of_number)
+        if rest_of_number != 3:
+            translated_num = hundreds + translate_to_20(rest_of_number)
+        else:
+            translated_num = hundreds + "tré"
         return translated_num
 
     if rest_of_number >= 20:
@@ -93,7 +96,10 @@ def translate_1000_to_9999(num):
         translated_num = thousands + translate_20_to_99(rest_of_number)
         return translated_num
     else:
-        translated_num = thousands + translate_to_20(rest_of_number)
+        if rest_of_number != 3:
+            translated_num = thousands + translate_to_20(rest_of_number)
+        else:
+            translated_num = thousands + "tré"
         return translated_num
 
 
@@ -107,22 +113,22 @@ def translate_number(num):
     else:
         translated_num = translate_1000_to_9999(num)
     return translated_num
-
-print("-" * 40)
-print("\nThis game tests your ability to write numbers up to 9999 in Italian.")
-print("Random numbers will continue to be generated until you use ctrl + C to exit.")
-print("\nYou will need to activate the US-Extended (Mac) or Windows International (PC) Keyboard.")
-print("For an acute accent(é):")
-print("\t[MAC]\t\ttype option + e and then the vowel")
-print("\t[WINDOWS]\ttype single quote and then the vowel\n")
-print("-" * 40)
-
-while(True):
-    number = random.randint(1, 10000)
-    translation = translate_number(number)
-    print("\nWhat is " + str(number) + " in Italian?")
-    answer = input(">> ")
-    if answer.lower() == translation:
-        print("Correct! Let's try another number.\n")
-    else:
-        print("That is not correct. The answer is " + translation + ".")
+#
+# print("-" * 40)
+# print("\nThis game tests your ability to write numbers up to 9999 in Italian.")
+# print("Random numbers will continue to be generated until you use ctrl + C to exit.")
+# print("\nYou will need to activate the US-Extended (Mac) or Windows International (PC) Keyboard.")
+# print("For an acute accent(é):")
+# print("\t[MAC]\t\ttype option + e and then the vowel")
+# print("\t[WINDOWS]\ttype single quote and then the vowel\n")
+# print("-" * 40)
+#
+# while(True):
+#     number = random.randint(1, 10000)
+#     translation = translate_number(number)
+#     print("\nWhat is " + str(number) + " in Italian?")
+#     answer = input(">> ")
+#     if answer.lower() == translation:
+#         print("Correct! Let's try another number.")
+#     else:
+#         print("That is not correct. The answer is " + translation + ".")
