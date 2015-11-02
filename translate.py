@@ -1,38 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-nums_to_twenty = {
-    '1': 'uno',
-    '2': 'due',
-    '3': 'tre',
-    '4': 'quattro',
-    '5': 'cinque',
-    '6': 'sei',
-    '7': 'sette',
-    '8': 'otto',
-    '9': 'nove',
-    '10': 'dieci',
-    '11': 'undici',
-    '12': 'dodici',
-    '13': 'tredici',
-    '14': 'quattordici',
-    '15': 'quindici',
-    '16': 'sedici',
-    '17': 'diciassette',
-    '18': 'diciotto',
-    '19': 'diciannove',
-}
-
-tens_place_nums = {
-    '2': 'venti',
-    '3': 'trenta',
-    '4': 'quaranta',
-    '5': 'cinquanta',
-    '6': 'sessanta',
-    '7': 'settanta',
-    '8': 'ottanta',
-    '9': 'novanta'
-}
+import random
+from numbers import *
 
 
 def translate_to_20(num):
@@ -138,4 +108,21 @@ def translate_number(num):
         translated_num = translate_1000_to_9999(num)
     return translated_num
 
+print("-" * 40)
+print("\nThis game tests your ability to write numbers up to 9999 in Italian.")
+print("Random numbers will continue to be generated until you use ctrl + C to exit.")
+print("\nYou will need to activate the US-Extended (Mac) or Windows International (PC) Keyboard.")
+print("For an acute accent(é):")
+print("\t[MAC]\t\ttype option + e and then the vowel")
+print("\t[WINDOWS]\ttype single quote and then the vowel\n")
+print("-" * 40)
 
+while(True):
+    number = random.randint(1, 10000)
+    translation = translate_number(number)
+    print("\nWhat is " + str(number) + " in Italian?")
+    answer = input(">> ")
+    if answer.lower() == translation:
+        print("Correct! Let's try another number:\n")
+    else:
+        print("That is not correct. The answer is " + translation + ".")
