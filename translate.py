@@ -5,13 +5,13 @@ import random
 from numbers import *
 
 
-def translate_to_20(num):
+def translate_to_19(num):
     # the commented out code below is slow because it rehashes
     # for key in nums_to_twenty:
     #     if str(num) == key:
     #         translated_num = nums_to_twenty[key]
     #         return translated_num
-    for k, v in nums_to_twenty.items():
+    for k, v in nums_to_19.items():
         if str(num) == k:
             translated_num = v
             return translated_num
@@ -25,7 +25,7 @@ def translate_20_to_99(num):
     if ones_place == "3":
         ones_place = "tré"
     else:
-        for k, v in nums_to_twenty.items():
+        for k, v in nums_to_19.items():
             if ones_place == k:
                 ones_place = v
 
@@ -50,7 +50,7 @@ def translate_100_to_999(num):
     rest_of_number = int(str(num)[1:])
 
     if int(hundreds_place) > 1:
-        hundreds = translate_to_20(num//100) + "cento"
+        hundreds = translate_to_19(num // 100) + "cento"
     else:
         hundreds = "cento"
 
@@ -64,7 +64,7 @@ def translate_100_to_999(num):
         if rest_of_number == 8:
             hundreds = hundreds[0:-1]
         if rest_of_number != 3:
-            translated_num = hundreds + translate_to_20(rest_of_number)
+            translated_num = hundreds + translate_to_19(rest_of_number)
         else:
             translated_num = hundreds + "tré"
         return translated_num
@@ -83,7 +83,7 @@ def translate_1000_to_9999(num):
     if thousands_place == 1:
         thousands = "mille"
     else:
-        thousands = translate_to_20(thousands_place) + "mila"
+        thousands = translate_to_19(thousands_place) + "mila"
 
     if rest_of_number == 0:
         translated_num = thousands
@@ -96,7 +96,7 @@ def translate_1000_to_9999(num):
         return translated_num
     else:
         if rest_of_number != 3:
-            translated_num = thousands + translate_to_20(rest_of_number)
+            translated_num = thousands + translate_to_19(rest_of_number)
         else:
             translated_num = thousands + "tré"
         return translated_num
@@ -104,7 +104,7 @@ def translate_1000_to_9999(num):
 
 def translate_number(num):
     if num < 20:
-        translated_num = translate_to_20(num)
+        translated_num = translate_to_19(num)
     elif 20 <= num < 100:
         translated_num = translate_20_to_99(num)
     elif 100 <= num < 1000:
