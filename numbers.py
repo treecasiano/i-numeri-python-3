@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-nums_to_twenty = {
+nums_to_19 = {
     '1': 'uno',
     '2': 'due',
     '3': 'tre',
