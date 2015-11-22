@@ -1,6 +1,8 @@
-# I Numeri
+# I Numeri (Python 3)
 
-This program runs in the terminal (for now) and quizzes you on random Italian numbers between 1 and 9999. I wrote it because I wanted to improve both my Python and my Italian skills simultaneously. It gave me good practice in iterating over Python dictionaries and using Python string methods. 
+This Python 3 program runs in the terminal and quizzes you on random Italian numbers between 1 and 9999.
 
-The next step is to recreate it with JavaScript and turn it into a flashcard web app of some kind, probably using React and Firebase.
+I wrote it because I wanted to improve both my Python and my Italian skills simultaneously. It gave me good practice in iterating over Python dictionaries and using Python string methods.
+
+ I'm now using this logic to create a Node.app. The repo for the new version can be found here: [I Numeri](https://github.com/treecasiano/inumeri).
 
